@@ -1,48 +1,18 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import { supabase } from '../supabaseClient';
+import { createContext, useContext, useState } from 'react';
 
 const AuthContext = createContext();
-
-const STORAGE_KEY = 'eyemanga_user';
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    // 1. Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
-    });
-
-    // 2. Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
-
   const loginWithInstagram = async () => {
-    setIsLoading(true);
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'facebook',
-        options: {
-          redirectTo: window.location.origin
-        }
-      });
-      if (error) throw error;
-    } catch (error) {
-      console.error('Error logging in:', error.message);
-      alert('Login failed: ' + error.message);
-    } finally {
-      setIsLoading(false);
-    }
+    // Mock login logic
+    console.log('Login clicked - Mock Mode');
   };
 
   const logout = async () => {
-    await supabase.auth.signOut();
+    setUser(null);
   };
 
   return (
