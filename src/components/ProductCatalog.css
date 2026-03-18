@@ -53,6 +53,10 @@
 }
 
 @media (max-width: 768px) {
+  .product-link, .product-image {
+    height: auto !important;
+  }
+  
   .product-card:hover .product-image {
     transform: none;
   }
@@ -70,7 +74,7 @@
     border-left: none;
     border-right: none;
     border-bottom: none;
-    padding: 0.8rem;
+    padding: 1rem;
     box-shadow: none;
   }
 }
