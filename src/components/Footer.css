@@ -79,6 +79,7 @@
 }
 
 @media (max-width: 480px) {
+  .site-footer { padding: 2rem 1rem 1.5rem; }
   .footer-nav { gap: 1rem; }
   .footer-nav a { font-size: 0.9rem; }
 }
