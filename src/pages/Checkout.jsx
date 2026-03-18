@@ -48,7 +48,7 @@ export default function Checkout() {
   };
 
   const handleOpenInstagram = () => {
-    window.open('https://www.instagram.com/keepittoxxic/', '_blank');
+    window.open('https://www.instagram.com/eye_manga_official/', '_blank');
   };
 
   return (
