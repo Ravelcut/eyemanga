@@ -1,0 +1,99 @@
+.instagram-panel {
+  display: flex !important;
+  flex-direction: column;
+  padding: 1.5rem;
+  justify-content: space-between;
+}
+
+.ig-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 4px solid black;
+  padding-bottom: 1rem;
+}
+
+.ig-title h2 {
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.ig-title p {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+.follow-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.ig-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  flex-grow: 1;
+}
+
+.ig-post-wrapper {
+  border: 3px solid black;
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+}
+
+.ig-post {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.ig-post-wrapper:hover .ig-post {
+  transform: scale(1.1) rotate(2deg);
+}
+
+.ig-hover-stats {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(255,255,255,0.9);
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  text-align: center;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  font-family: 'Inter', sans-serif;
+}
+.ig-post-wrapper:hover .ig-hover-stats {
+  opacity: 1;
+}
+.ig-caption-peek {
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.ig-stats-row {
+  display: flex;
+  gap: 15px;
+}
+.ig-hover-stats span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .ig-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
