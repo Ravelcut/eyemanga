@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 import './Hero.css';
 
 export default function Hero() {
+  const { lang, t } = useLanguage();
   return (
     <section className="hero">
       <div className="hero-bg-effects">
@@ -25,14 +27,16 @@ export default function Hero() {
           <span className="hero-title-line">Eye</span>
           <span className="hero-title-line hero-title-accent">Manga</span>
         </h1>
-        <p className="hero-subtitle">Original manga series & exclusive merchandise</p>
+        <p className="hero-subtitle">
+          {lang === 'ka' ? 'ორიგინალური მანგა სერიები და ექსკლუზიური მერჩენდაიზი' : 'Original manga series & exclusive merchandise'}
+        </p>
         <div className="hero-actions">
-          <Link to="/catalog" className="hero-btn hero-btn-primary">Browse Catalog</Link>
-          <Link to="/about" className="hero-btn hero-btn-secondary">Our Story</Link>
+          <Link to="/catalog" className="hero-btn hero-btn-primary">{t('catalog')}</Link>
+          <Link to="/about" className="hero-btn hero-btn-secondary">{t('the_story')}</Link>
         </div>
       </div>
       <div className="hero-scroll-indicator">
-        <span>Scroll</span>
+        <span>{lang === 'ka' ? 'ჩამოსქროლე' : 'Scroll'}</span>
         <div className="scroll-line"></div>
       </div>
     </section>

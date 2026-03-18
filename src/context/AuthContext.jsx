@@ -29,8 +29,7 @@ export function AuthProvider({ children }) {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'facebook',
         options: {
-          redirectTo: window.location.origin,
-          scopes: 'instagram_basic,instagram_graph_user_profile'
+          redirectTo: window.location.origin
         }
       });
       if (error) throw error;

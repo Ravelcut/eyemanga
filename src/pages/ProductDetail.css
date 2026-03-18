@@ -62,7 +62,55 @@
   font-family: 'Inter', sans-serif;
   font-size: 2rem;
   font-weight: 900;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.volume-selector {
+  margin-bottom: 2rem;
+}
+
+.volume-selector h3 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.8rem;
+}
+
+.volume-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.volume-btn {
+  min-width: 44px;
+  height: 44px;
+  padding: 0;
+  background: var(--card-bg);
+  border: 1.5px solid var(--border-color);
+  color: var(--text-color);
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 0 var(--border-color);
+}
+
+.volume-btn:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.volume-btn.active {
+  background: var(--text-color);
+  color: var(--bg-color);
+  border-color: var(--text-color);
+  box-shadow: 3px 3px 0 var(--accent-color);
+  transform: translate(-1px, -1px);
 }
 
 .product-detail-desc {
@@ -89,6 +137,29 @@
   color: var(--text-color);
   transform: translate(-3px, -3px);
   box-shadow: 8px 8px 0px 0px var(--border-color);
+}
+
+.buy-now-btn {
+  width: 100%;
+  padding: 1rem;
+  background: var(--accent-color);
+  color: white;
+  border: 2px solid black;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  box-shadow: 5px 5px 0px 0px black;
+}
+
+.buy-now-btn:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0px 0px black;
+  filter: brightness(1.1);
 }
 
 /* Related */

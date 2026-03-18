@@ -1,0 +1,202 @@
+.checkout-page {
+  padding: 80px 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-color);
+}
+
+.checkout-container {
+  max-width: 560px;
+  width: 100%;
+  padding: 40px;
+  background: var(--card-bg);
+  color: var(--text-color);
+  border: var(--manga-border);
+  box-shadow: 15px 15px 0px var(--accent-color);
+}
+
+.checkout-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  margin-bottom: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.order-summary {
+  margin-bottom: 30px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 20px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  opacity: 0.8;
+}
+
+.items-list {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  padding-right: 5px;
+}
+
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  border-top: 2px solid black;
+  padding-top: 15px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.order-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.order-form label {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.order-form input, .order-form textarea {
+  padding: 12px;
+  border: 2px solid black;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.order-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.checkout-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: center;
+}
+
+.copy-btn, .ig-send-btn {
+  padding: 15px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s;
+}
+
+.copy-btn {
+  background: black;
+  color: white;
+}
+
+.ig-send-btn {
+  background: var(--accent-color);
+  color: white;
+}
+
+.copy-btn:hover, .ig-send-btn:hover {
+  transform: translateY(-3px);
+}
+
+.instruction-text {
+  font-size: 0.85rem;
+  opacity: 0.6;
+  font-style: italic;
+  margin: 5px 0;
+}
+
+.back-btn {
+  margin-top: 30px;
+  background: none;
+  border: none;
+  box-shadow: none;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 0.95rem;
+  opacity: 0.5;
+  text-decoration: underline;
+  width: 100%;
+}
+
+.back-btn:hover {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 600px) {
+  .checkout-container {
+    padding: 20px;
+  }
+}
+
+.promo-section {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: var(--card-bg);
+  border: 1px dashed var(--border-color);
+  opacity: 0.9;
+}
+
+.promo-section label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.promo-input-group {
+  display: flex;
+  gap: 10px;
+}
+
+.promo-input-group input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 2px solid black;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.apply-btn {
+  padding: 0 20px;
+  background: black;
+  color: white;
+  border: none;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.promo-error {
+  color: #d00;
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+.promo-success {
+  color: #080;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.discount-line {
+  color: #080 !important;
+  font-weight: bold;
+  font-style: italic;
+}

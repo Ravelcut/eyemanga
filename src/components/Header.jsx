@@ -1,15 +1,17 @@
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { FiShoppingCart, FiSearch, FiMenu, FiX, FiLogOut } from 'react-icons/fi';
+import { FiShoppingCart, FiMenu, FiX, FiLogOut } from 'react-icons/fi';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { useCart } from '../context/CartContext';
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 import { useState } from 'react';
 
 export default function Header() {
   const { cartCount, openCart } = useCart();
   const { isDark, toggleTheme } = useTheme();
   const { user, logout } = useAuth();
+  const { lang, toggleLang, t } = useLanguage();
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
 
@@ -37,15 +39,19 @@ export default function Header() {
 
       <nav className={`header-nav ${mobileOpen ? 'header-nav-open' : ''}`}>
         <NavLink to="/catalog" onClick={closeMobile}>
-          <FiSearch /> Catalog
+          {t('catalog')}
         </NavLink>
-        <NavLink to="/about" onClick={closeMobile}>About</NavLink>
-        <NavLink to="/contact" onClick={closeMobile}>Contact</NavLink>
+        <NavLink to="/about" onClick={closeMobile}>{t('about')}</NavLink>
+        <NavLink to="/contact" onClick={closeMobile}>{t('contact')}</NavLink>
 
         <div className="header-divider" />
 
         <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle dark mode">
           {isDark ? <FaSun /> : <FaMoon />}
+        </button>
+
+        <button className="theme-toggle lang-toggle" onClick={toggleLang} aria-label="Toggle language">
+          {lang === 'en' ? 'GE' : 'EN'}
         </button>
 
         <button className="cart-btn" onClick={() => { openCart(); closeMobile(); }} aria-label="Open cart">

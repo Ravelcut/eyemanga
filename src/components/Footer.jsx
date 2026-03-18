@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import { FaInstagram } from 'react-icons/fa';
+import { useLanguage } from '../context/LanguageContext';
 import './Footer.css';
 
 export default function Footer() {
+  const { t } = useLanguage();
   return (
     <footer className="site-footer">
       <div className="footer-inner">
@@ -34,7 +36,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-copy">
-          <p>&copy; {new Date().getFullYear()} Eye Manga. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Eye Manga. {t('all_rights_reserved') || 'All rights reserved.'}</p>
         </div>
       </div>
     </footer>

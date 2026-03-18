@@ -1,16 +1,25 @@
+import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useLanguage } from '../context/LanguageContext';
 import { FiX, FiPlus, FiMinus, FiTrash2, FiSend } from 'react-icons/fi';
 import './CartDrawer.css';
 
 export default function CartDrawer() {
+  const navigate = useNavigate();
   const { items, isOpen, closeCart, cartTotal, cartCount, updateQuantity, removeFromCart, checkout, clearCart } = useCart();
+  const { t, lang } = useLanguage();
+
+  const handleCheckout = () => {
+    closeCart();
+    navigate('/checkout', { state: { cart: items, total: cartTotal } });
+  };
 
   return (
     <>
       <div className={`cart-overlay ${isOpen ? 'cart-overlay-visible' : ''}`} onClick={closeCart} />
       <aside className={`cart-drawer ${isOpen ? 'cart-drawer-open' : ''}`}>
         <div className="cart-drawer-header">
-          <h2>Your Cart ({cartCount})</h2>
+          <h2>{t('cart')} ({cartCount})</h2>
           <button className="cart-close-btn" onClick={closeCart} aria-label="Close cart">
             <FiX />
           </button>
@@ -18,7 +27,7 @@ export default function CartDrawer() {
 
         {items.length === 0 ? (
           <div className="cart-empty">
-            <p>Your cart is empty</p>
+            <p>{t('empty_cart')}</p>
             <span className="cart-empty-icon">👁️</span>
           </div>
         ) : (
@@ -28,8 +37,8 @@ export default function CartDrawer() {
                 <div key={item.id} className="cart-item">
                   <img src={item.image} alt={item.title} className="cart-item-img" />
                   <div className="cart-item-info">
-                    <h4>{item.title}</h4>
-                    <p className="cart-item-price">${item.price.toFixed(2)}</p>
+                    <h4>{item.name || (lang === 'ka' ? item.title_ka : item.title)}</h4>
+                    <p className="cart-item-price">{t('cur_sym')}{item.price.toFixed(2)}</p>
                     <div className="cart-item-controls">
                       <button
                         className="qty-btn"
@@ -61,14 +70,14 @@ export default function CartDrawer() {
 
             <div className="cart-footer">
               <div className="cart-total">
-                <span>Total</span>
-                <span className="cart-total-price">${cartTotal.toFixed(2)}</span>
+                <span>{t('total')}</span>
+                <span className="cart-total-price">{t('cur_sym')}{cartTotal.toFixed(2)}</span>
               </div>
-              <button className="checkout-btn" onClick={checkout}>
-                <FiSend /> Checkout via Instagram
+              <button className="checkout-btn" onClick={handleCheckout}>
+                <FiSend /> {t('checkout')}
               </button>
               <button className="clear-btn" onClick={clearCart}>
-                Clear Cart
+                {t('clear_cart')}
               </button>
             </div>
           </>

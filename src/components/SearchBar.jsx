@@ -1,10 +1,8 @@
-import { FiSearch } from 'react-icons/fi';
 import './SearchBar.css';
 
 export default function SearchBar({ value, onChange, placeholder = 'Search products...' }) {
   return (
     <div className="search-bar">
-      <FiSearch className="search-icon" />
       <input
         type="text"
         className="search-input"
