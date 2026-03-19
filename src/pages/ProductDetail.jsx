@@ -93,12 +93,24 @@ export default function ProductDetail() {
             {(volumeObj?.chapters_en || volumeObj?.chapters_ka || volumeObj?.chapters) && (
               <div className="product-chapters">
                 <span className="chapters-label">{lang === 'ka' ? 'თავები:' : 'Chapters:'}</span>
-                <span className="chapters-list">
-                  {lang === 'ka' 
-                    ? (volumeObj.chapters_ka || volumeObj.chapters_en || volumeObj.chapters) 
-                    : (volumeObj.chapters_en || volumeObj.chapters_ka || volumeObj.chapters)
-                  }
-                </span>
+                <div className="chapters-list-container">
+                  {(() => {
+                    const list = lang === 'ka' 
+                      ? (volumeObj.chapters_ka || volumeObj.chapters_en || volumeObj.chapters) 
+                      : (volumeObj.chapters_en || volumeObj.chapters_ka || volumeObj.chapters);
+                    
+                    if (Array.isArray(list)) {
+                      return (
+                        <ol className="chapters-ol">
+                          {list.map((ch, idx) => (
+                            <li key={idx} className="chapter-item">{ch}</li>
+                          ))}
+                        </ol>
+                      );
+                    }
+                    return <span className="chapters-list">{list}</span>;
+                  })()}
+                </div>
               </div>
             )}
 
