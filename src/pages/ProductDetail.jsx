@@ -21,9 +21,16 @@ export default function ProductDetail() {
 
   useEffect(() => {
     if (product) {
-      const visits = JSON.parse(localStorage.getItem('productVisits') || '{}');
-      visits[product.id] = (visits[product.id] || 0) + 1;
-      localStorage.setItem('productVisits', JSON.stringify(visits));
+      // Get existing recent visits
+      const recent = JSON.parse(localStorage.getItem('recentVisits') || '[]');
+      
+      // Remove current product if it's already in the list to avoid duplicates
+      const filtered = recent.filter(id => id !== product.id);
+      
+      // Add current product to the beginning
+      const updated = [product.id, ...filtered].slice(0, 10); // Keep last 10
+      
+      localStorage.setItem('recentVisits', JSON.stringify(updated));
     }
   }, [product]);
 

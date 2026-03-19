@@ -224,27 +224,16 @@ export const products = [
   }
 ];
 
-export const getMostVisitedProducts = (limit = 4) => {
-  const visits = JSON.parse(localStorage.getItem('productVisits') || '{}');
-  
-  // Create a copy of products to sort
-  const sortedProducts = [...products].sort((a, b) => {
-    const visitsA = visits[a.id] || 0;
-    const visitsB = visits[b.id] || 0;
-    
-    if (visitsB !== visitsA) {
-      return visitsB - visitsA;
-    }
-    
-    // Primary fallback: Manually featured
-    if (a.featured !== b.featured) {
-      return a.featured ? -1 : 1;
-    }
-    
-    return 0;
-  });
-
-  return sortedProducts.slice(0, limit);
+export const getRecentlyVisitedProducts = (limit = 4) => {
+  try {
+    const recentIds = JSON.parse(localStorage.getItem('recentVisits') || '[]');
+    return recentIds
+      .map(id => products.find(p => p.id === id))
+      .filter(p => !!p)
+      .slice(0, limit);
+  } catch (e) {
+    return [];
+  }
 };
 
 export const getFeaturedProducts = () => products.filter(p => p.featured);
