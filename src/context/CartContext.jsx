@@ -1,5 +1,4 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { validatePromocode, recordPromoUsage } from '../data/promocodes';
 
 const CartContext = createContext();
 
@@ -17,7 +16,6 @@ function loadCart() {
 export function CartProvider({ children }) {
   const [items, setItems] = useState(loadCart);
   const [isOpen, setIsOpen] = useState(false);
-  const [appliedPromo, setAppliedPromo] = useState(null);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
@@ -55,32 +53,14 @@ export function CartProvider({ children }) {
 
   const clearCart = () => {
     setItems([]);
-    setAppliedPromo(null);
   };
-
-  const applyPromo = (code) => {
-    const promo = validatePromocode(code);
-    if (promo) {
-      if (promo.error === 'limit_reached') {
-        return { success: false, error: 'limit_reached' };
-      }
-      recordPromoUsage(promo.code);
-      setAppliedPromo(promo);
-      return { success: true };
-    }
-    return { success: false, error: 'invalid' };
-  };
-
-  const removePromo = () => setAppliedPromo(null);
 
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
   const toggleCart = () => setIsOpen(prev => !prev);
 
   const cartCount = items.reduce((sum, item) => sum + item.quantity, 0);
-  const baseTotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const discountAmount = appliedPromo ? (baseTotal * appliedPromo.discount / 100) : 0;
-  const cartTotal = baseTotal - discountAmount;
+  const cartTotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   const checkout = () => {
     const itemList = items.map(i => `${i.title} x${i.quantity}`).join(', ');
@@ -91,8 +71,8 @@ export function CartProvider({ children }) {
 
   return (
     <CartContext.Provider value={{
-      items, isOpen, cartCount, cartTotal, baseTotal, discountAmount, appliedPromo,
-      addToCart, removeFromCart, updateQuantity, clearCart, applyPromo, removePromo,
+      items, isOpen, cartCount, cartTotal,
+      addToCart, removeFromCart, updateQuantity, clearCart,
       openCart, closeCart, toggleCart, checkout,
     }}>
       {children}
