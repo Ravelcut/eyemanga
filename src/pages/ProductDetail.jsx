@@ -90,10 +90,15 @@ export default function ProductDetail() {
 
             <p className="product-detail-desc">{lang === 'ka' ? product.description_ka : product.description}</p>
 
-            {volumeObj?.chapters && (
+            {(volumeObj?.chapters_en || volumeObj?.chapters_ka || volumeObj?.chapters) && (
               <div className="product-chapters">
                 <span className="chapters-label">{lang === 'ka' ? 'თავები:' : 'Chapters:'}</span>
-                <span className="chapters-list">{volumeObj.chapters}</span>
+                <span className="chapters-list">
+                  {lang === 'ka' 
+                    ? (volumeObj.chapters_ka || volumeObj.chapters_en || volumeObj.chapters) 
+                    : (volumeObj.chapters_en || volumeObj.chapters_ka || volumeObj.chapters)
+                  }
+                </span>
               </div>
             )}
 
