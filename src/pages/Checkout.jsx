@@ -15,14 +15,15 @@ export default function Checkout() {
   const cartItems = location.state?.cart || contextItems;
   const total = location.state?.total || product?.price || contextTotal || 0;
   
-  const [customerName, setCustomerName] = useState(user?.email || '');
+  const [customerName, setCustomerName] = useState(user?.display_name || '');
+  const [contact, setContact] = useState(user?.email || '');
   const [notes, setNotes] = useState('');
   const [copied, setCopied] = useState(false);
 
   const orderId = Math.floor(1000 + Math.random() * 9000);
   
   const itemsListText = cartItems.map(item => `- ${item.name || (lang === 'ka' ? (item.title_ka || item.title) : (item.title || item.name))} ${item.quantity ? `(x${item.quantity})` : ''}`).join('\n');
-  const orderText = `🛒 ORDER #${orderId}\n------------------\n👤 ${lang === 'ka' ? 'სახელი' : 'Name'}: ${customerName}\n📦 ${lang === 'ka' ? 'ნივთები' : 'Items'}:\n${itemsListText}\n💰 ${lang === 'ka' ? 'ჯამი' : 'Total'}: ${t('cur_sym')}${total.toFixed(2)}\n📝 ${lang === 'ka' ? 'შენიშვნა' : 'Notes'}: ${notes || (lang === 'ka' ? 'არ არის' : 'None')}\n------------------\n(Generated via Eye Manga)`;
+  const orderText = `🛒 ORDER #${orderId}\n------------------\n👤 ${lang === 'ka' ? 'სახელი' : 'Name'}: ${customerName}\n📱 ${lang === 'ka' ? 'საკონტაქტო' : 'Contact'}: ${contact}\n📦 ${lang === 'ka' ? 'ნივთები' : 'Items'}:\n${itemsListText}\n💰 ${lang === 'ka' ? 'ჯამი' : 'Total'}: ${t('cur_sym')}${total.toFixed(2)}\n📝 ${lang === 'ka' ? 'შენიშვნა' : 'Notes'}: ${notes || (lang === 'ka' ? 'არ არის' : 'None')}\n------------------\n(Generated via Eye Manga)`;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(orderText);
@@ -62,6 +63,14 @@ export default function Checkout() {
             value={customerName} 
             onChange={(e) => setCustomerName(e.target.value)} 
             placeholder={t('name_placeholder')}
+          />
+
+          <label>{t('contact_label')}</label>
+          <input 
+            type="text" 
+            value={contact} 
+            onChange={(e) => setContact(e.target.value)} 
+            placeholder={t('contact_placeholder')}
           />
 
           <label>{t('notes_label')}</label>
