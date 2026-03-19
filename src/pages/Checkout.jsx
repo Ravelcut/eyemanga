@@ -32,7 +32,7 @@ export default function Checkout() {
   };
 
   const handleOpenInstagram = () => {
-    window.open('https://www.instagram.com/eye_manga_official/', '_blank');
+    window.open('https://ig.me/m/eye_manga_official', '_blank');
   };
 
   return (
