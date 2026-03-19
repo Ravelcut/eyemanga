@@ -18,10 +18,10 @@ export default function Footer() {
         </div>
 
         <nav className="footer-nav">
-          <Link to="/">Home</Link>
-          <Link to="/catalog">Catalog</Link>
-          <Link to="/about">About</Link>
-          <Link to="/contact">Contact</Link>
+          <Link to="/">{t('home')}</Link>
+          <Link to="/catalog">{t('catalog')}</Link>
+          <Link to="/about">{t('about')}</Link>
+          <Link to="/contact">{t('contact')}</Link>
         </nav>
 
         <div className="footer-social">

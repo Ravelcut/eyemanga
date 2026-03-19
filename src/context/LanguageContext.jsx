@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const translations = {
   en: {
+    home: 'Home',
     catalog: 'Catalog',
     about: 'About',
     contact: 'Contact',
@@ -69,6 +70,7 @@ const translations = {
     cur_sym: '₾'
   },
   ka: {
+    home: 'მთავარი',
     catalog: 'კატალოგი',
     about: 'ჩვენს შესახებ',
     contact: 'კონტაქტი',
