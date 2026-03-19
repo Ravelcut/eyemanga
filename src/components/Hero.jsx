@@ -28,7 +28,9 @@ export default function Hero() {
           <span className="hero-title-line hero-title-accent">Manga</span>
         </h1>
         <p className="hero-subtitle">
-          {lang === 'ka' ? 'მიიღე მანგას და ანიმეს სტიკერები/პოსტერები იაფად.' : 'get manga and anime stickers/posters for cheap.'}
+          {lang === 'ka' 
+            ? 'შეიძინე მანგა, ანიმეს სტიკერები/პოსტერები და სხვა' 
+            : 'buy manga, anime stickers/posters and more'}
         </p>
         <div className="hero-actions">
           <Link to="/catalog" className="hero-btn hero-btn-primary">{t('catalog')}</Link>
