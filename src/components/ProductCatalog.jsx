@@ -50,10 +50,10 @@ export default function ProductCatalog({ products = [] }) {
                     e.preventDefault();
                     const firstVol = product.volumes?.[0];
                     addToCart({
-                      ...product,
                       id: `${product.id}-v1`,
-                      price: firstVol?.price || 0,
-                      name: `${lang === 'ka' ? product.title_ka : product.title}`
+                      seriesId: product.id,
+                      selectedVolume: 1,
+                      price: firstVol?.price || 0
                     });
                   }}
                 >

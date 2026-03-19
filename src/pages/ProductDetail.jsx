@@ -43,12 +43,10 @@ export default function ProductDetail() {
     const vol = product.volumes.find(v => v.number === selectedVolume);
     if (!vol) return;
     addToCart({
-      ...product,
       id: `${product.id}-v${selectedVolume}`,
       seriesId: product.id,
       selectedVolume: selectedVolume,
-      price: vol.price,
-      name: `${lang === 'ka' ? product.title_ka : product.title} - ${t('volume')} ${selectedVolume}`
+      price: vol.price
     });
   };
 
