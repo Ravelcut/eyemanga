@@ -15,8 +15,8 @@ const translations = {
     name_placeholder: 'Enter your full name',
     contact_label: 'Contact (Phone / IG)',
     contact_placeholder: 'How should we contact you?',
-    notes_label: 'Special Instructions (Size, Color, etc.)',
-    notes_placeholder: 'Add any specific details for your order...',
+    notes_label: 'Add details to your order',
+    notes_placeholder: '',
     copy_order: '1. COPY ORDER DETAILS',
     copied: 'COPIED!',
     send_ig: '2. SEND TO INSTAGRAM',
@@ -82,8 +82,8 @@ const translations = {
     name_placeholder: 'შეიყვანეთ სრული სახელი',
     contact_label: 'საკონტაქტო (ტელეფონი / IG)',
     contact_placeholder: 'როგორ დაგიკავშირდეთ?',
-    notes_label: 'დამატებითი ინსტრუქცია (ზომა, ფერი და ა.შ.)',
-    notes_placeholder: 'მიუთითეთ დეტალები თქვენი შეკვეთისთვის...',
+    notes_label: 'დაამატეთ დეტალები შეკვეთას',
+    notes_placeholder: '',
     copy_order: '1. დააკოპირეთ მონაცემები',
     copied: 'დაკოპირდა!',
     send_ig: '2. გაგზავნეთ ინსტაგრამზე',
@@ -148,7 +148,7 @@ export function LanguageProvider({ children }) {
   }, [lang]);
 
   const t = (key) => {
-    return translations[lang][key] || key;
+    return translations[lang][key] !== undefined ? translations[lang][key] : key;
   };
 
   const toggleLang = () => {
