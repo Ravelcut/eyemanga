@@ -37,6 +37,7 @@ export default function Footer() {
 
         <div className="footer-copy">
           <p>&copy; {new Date().getFullYear()} Eye Manga. {t('all_rights_reserved') || 'All rights reserved.'}</p>
+          <p style={{ fontSize: '0.7rem', opacity: 0.3, marginTop: '0.5rem' }}>MANGA-ONLY VERSION 1.1</p>
         </div>
       </div>
     </footer>
