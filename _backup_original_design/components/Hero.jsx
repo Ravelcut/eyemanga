@@ -16,8 +16,12 @@ export default function Hero() {
       </div>
       <div className="hero-content">
         <div className="hero-eyeball">
-          <div className="hero-logo-ring"></div>
-          <img src="/logo.jpg" alt="Eye Manga" className="hero-logo-img" />
+          <svg viewBox="0 0 200 100" className="hero-eye-svg" aria-hidden="true">
+            <path d="M10,50 Q100,-20 190,50 Q100,120 10,50" fill="none" stroke="currentColor" strokeWidth="6" />
+            <circle cx="100" cy="50" r="22" fill="currentColor" />
+            <circle cx="100" cy="50" r="9" fill="var(--bg-color)" />
+            <path d="M95,30 L105,30 L105,42 L95,42 Z" fill="var(--bg-color)" />
+          </svg>
         </div>
         <h1 className="hero-title">
           <span className="hero-title-line">Eye</span>

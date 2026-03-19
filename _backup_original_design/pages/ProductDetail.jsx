@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { getProductById, products } from '../data/products';
 import { useCart } from '../context/CartContext';
@@ -18,14 +18,6 @@ export default function ProductDetail() {
     const firstVol = product?.volumes?.[0]?.number || 1;
     return firstVol;
   });
-
-  useEffect(() => {
-    if (product) {
-      const visits = JSON.parse(localStorage.getItem('productVisits') || '{}');
-      visits[product.id] = (visits[product.id] || 0) + 1;
-      localStorage.setItem('productVisits', JSON.stringify(visits));
-    }
-  }, [product]);
 
   if (!product) {
     return (

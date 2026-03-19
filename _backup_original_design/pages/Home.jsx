@@ -1,20 +1,13 @@
-import { useState, useEffect } from 'react';
 import Hero from '../components/Hero';
 import ProductCatalog from '../components/ProductCatalog';
 import Footer from '../components/Footer';
 import { useLanguage } from '../context/LanguageContext';
-import { getMostVisitedProducts, getFeaturedProducts } from '../data/products';
+import { getFeaturedProducts } from '../data/products';
 import './Home.css';
 
 export default function Home() {
-  const { t } = useLanguage();
-  const [featured, setFeatured] = useState(() => getFeaturedProducts());
-
-  useEffect(() => {
-    // Load most visited products on client mount
-    const mostVisited = getMostVisitedProducts();
-    setFeatured(mostVisited);
-  }, []);
+  const { lang, t } = useLanguage();
+  const featured = getFeaturedProducts();
 
   return (
     <div className="page-home">

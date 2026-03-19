@@ -9,7 +9,11 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="footer-inner">
         <div className="footer-brand">
-          <img src="/logo.jpg" alt="Eye Manga Logo" className="footer-logo-img" />
+          <svg viewBox="0 0 100 50" width="40" height="20" aria-label="Eye Manga Logo">
+            <path d="M10,25 Q50,-5 90,25 Q50,55 10,25" fill="none" stroke="currentColor" strokeWidth="6" />
+            <circle cx="50" cy="25" r="10" fill="currentColor" />
+            <circle cx="50" cy="25" r="4" fill="var(--bg-color)" />
+          </svg>
           <span className="footer-brand-name">Eye Manga</span>
         </div>
 

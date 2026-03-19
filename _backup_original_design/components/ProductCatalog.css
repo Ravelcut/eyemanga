@@ -91,7 +91,7 @@
   font-size: 0.75rem;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: var(--accent-blue);
+  color: var(--accent-color);
   margin-bottom: 0.4rem;
   font-weight: bold;
 }
@@ -114,38 +114,37 @@
 
 .info-content .buy-button {
   width: 100%;
-  background: var(--accent-blue);
-  color: #fff;
-  box-shadow: 3px 3px 0px 0px var(--accent-green);
-  border: 2px solid var(--accent-blue);
+  background: var(--text-color);
+  color: var(--bg-color);
+  box-shadow: 3px 3px 0px 0px var(--accent-color);
+  border: 2px solid var(--border-color);
 }
 
 .info-content .buy-button:hover {
   background: var(--bg-color);
-  color: var(--accent-blue);
+  color: var(--text-color);
   box-shadow: 3px 3px 0px 0px var(--border-color);
 }
 
 .buy-now-link {
   display: block;
   margin-top: 10px;
-  background-color: var(--accent-blue);
+  background-color: var(--accent-color);
   color: white;
   text-decoration: none;
   font-family: 'Bebas Neue', sans-serif;
   font-size: 1.1rem;
   padding: 10px;
   text-align: center;
-  border: 2px solid var(--accent-blue);
-  box-shadow: 3px 3px 0 var(--accent-green);
+  border: 2px solid var(--border-color);
   transition: all 0.2s;
   pointer-events: auto;
 }
 
 .buy-now-link:hover {
-  filter: brightness(1.15);
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px var(--accent-green);
+  filter: brightness(1.2);
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0px var(--border-color);
 }
 
 .more-link {

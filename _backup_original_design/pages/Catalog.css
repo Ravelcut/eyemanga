@@ -1,0 +1,108 @@
+.page-catalog {
+  animation: pageIn 0.4s ease-out;
+}
+
+.catalog-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.catalog-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.catalog-title {
+  font-size: 3rem;
+  letter-spacing: 4px;
+}
+
+.catalog-count {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  opacity: 0.5;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Controls */
+.catalog-controls {
+  display: flex;
+  align-items: stretch;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.category-filters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 0.5rem 1.2rem;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  box-shadow: 3px 3px 0px 0px var(--border-color);
+  transition: all 0.15s ease;
+}
+
+.filter-btn-active {
+  background: var(--text-color);
+  color: var(--bg-color);
+}
+
+.filter-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px 0px var(--border-color);
+}
+
+.catalog-controls .search-bar {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Grid */
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 300px;
+  gap: 16px;
+}
+
+@media (max-width: 1024px) {
+  .catalog-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .catalog-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: auto; }
+  .catalog-container { padding: 2rem 1.5rem; }
+  .catalog-title { font-size: 2rem; }
+}
+@media (max-width: 480px) {
+  .catalog-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
+  .catalog-grid .manga-panel { grid-column: span 1 !important; grid-row: auto !important; }
+  .catalog-controls { flex-direction: column; }
+}
+
+/* Empty state */
+.catalog-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  border: var(--manga-border);
+  box-shadow: var(--manga-shadow);
+  background: var(--bg-color);
+}
+
+.catalog-empty p {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+  opacity: 0.5;
+}

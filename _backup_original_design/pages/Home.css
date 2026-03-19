@@ -1,0 +1,67 @@
+.page-home {
+  animation: pageIn 0.4s ease-out;
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Sections */
+.section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 2rem 2rem;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 2rem;
+  letter-spacing: 3px;
+  white-space: nowrap;
+}
+
+.section-line {
+  flex: 1;
+  height: 4px;
+  background: var(--border-color);
+}
+
+/* Featured grid */
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 300px;
+  gap: 16px;
+}
+
+@media (max-width: 1024px) {
+  .featured-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .featured-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: auto; }
+  .section { padding: 3rem 1.5rem 1.5rem; }
+}
+@media (max-width: 480px) {
+  .featured-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
+  .featured-grid .manga-panel { grid-column: span 1 !important; grid-row: auto !important; }
+  .section-title { font-size: 1.5rem; }
+}
+
+/* Instagram section */
+.ig-section .instagram-panel {
+  border: var(--manga-border);
+  box-shadow: 6px 6px 0px 0px var(--border-color);
+}

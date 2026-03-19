@@ -20,11 +20,13 @@ export default function Header() {
   return (
     <header className="site-header">
       <Link to="/" className="logo-container" onClick={closeMobile}>
-        <img src="/logo.jpg" alt="Eye Manga Logo" className="logo-img" />
-        <div className="logo-wordmark">
-          <span className="logo-eye">Eye</span>
-          <span className="logo-manga">Manga</span>
-        </div>
+        <svg viewBox="0 0 100 50" width="60" height="30" className="eye-logo" aria-label="Eye Manga Logo">
+          <path d="M10,25 Q50,-5 90,25 Q50,55 10,25" fill="none" stroke="currentColor" strokeWidth="6" />
+          <circle cx="50" cy="25" r="10" fill="currentColor" />
+          <circle cx="50" cy="25" r="4" fill="var(--bg-color)" />
+          <path d="M48,15 L52,15 L52,22 L48,22 Z" fill="var(--bg-color)" />
+        </svg>
+        <h1>Eye Manga</h1>
       </Link>
 
       <button

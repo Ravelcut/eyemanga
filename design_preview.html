@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eye Manga — Design Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Inter:wght@400;600;900&family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <style>
+    /* =========================================================
+       DESIGN PREVIEW — Eye Manga Redesign
+       Brand palette extracted from logo.jpg:
+         Blue  #1877F2  (background of logo)
+         Green #2ECC40  (iris)
+         Black #000000  (outlines / pupil)
+         White #ffffff
+    ========================================================= */
+
+    /* ── CSS Variables ───────────────────────────────────────── */
+    :root {
+      --bg-color:      #ffffff;
+      --text-color:    #000000;
+      --border-color:  #000000;
+      --accent-blue:   #1877F2;   /* logo blue */
+      --accent-green:  #2ECC40;   /* logo green iris */
+      --card-bg:       #ffffff;
+      --dot-opacity:   0.07;
+
+      --manga-border:        4px solid var(--border-color);
+      --manga-shadow:        8px 8px 0px 0px var(--border-color);
+      --manga-shadow-hover: 12px 12px 0px 0px var(--border-color);
+    }
+
+    [data-theme="dark"] {
+      --bg-color:     #0d0d0d;
+      --text-color:   #f0f0f0;
+      --border-color: #f0f0f0;
+      --accent-blue:  #3a9bff;
+      --accent-green: #3ef55b;
+      --card-bg:      #161616;
+      --dot-opacity:  0.06;
+    }
+
+    /* ── Reset ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      background-image: radial-gradient(var(--accent-blue) 1px, transparent 1px);
+      background-size: 22px 22px;
+      background-attachment: fixed;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    [data-theme="dark"] body {
+      background-image: radial-gradient(rgba(24,119,242,0.18) 1px, transparent 1px);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Oswald', sans-serif;
+      text-transform: uppercase;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+      transition: filter 0.5s ease, transform 0.4s ease;
+    }
+
+    @media (min-width: 769px) {
+      .manga-panel img { filter: grayscale(100%) contrast(110%); }
+      .manga-panel:hover img { filter: grayscale(0%) contrast(100%); }
+    }
+
+    a { text-decoration: none; }
+
+    /* ── Scrollbar ──────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg-color); }
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-blue);
+      border: 2px solid var(--bg-color);
+      border-radius: 2px;
+    }
+
+    ::selection { background: var(--accent-blue); color: #fff; }
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 3rem;
+      background-color: var(--bg-color);
+      border-bottom: var(--manga-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Logo */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text-color);
+    }
+
+    .logo-img {
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid var(--accent-blue);
+      box-shadow: 3px 3px 0 var(--accent-blue);
+      filter: none !important;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .logo-container:hover .logo-img {
+      transform: rotate(-6deg) scale(1.08);
+      box-shadow: 5px 5px 0 var(--accent-green);
+    }
+
+    .logo-wordmark {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .logo-eye {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+    }
+
+    .logo-manga {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.55rem;
+      letter-spacing: 3px;
+      color: var(--text-color);
+      text-transform: uppercase;
+    }
+
+    /* Nav */
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .header-nav a {
+      color: var(--text-color);
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 1px;
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    .header-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--accent-blue);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+
+    .header-nav a:hover { color: var(--accent-blue); }
+    .header-nav a:hover::after { transform: scaleX(1); transform-origin: left; }
+    .header-nav a.active::after { transform: scaleX(1); transform-origin: left; }
+
+    .header-divider {
+      width: 1px;
+      height: 24px;
+      background: var(--border-color);
+      opacity: 0.25;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      box-shadow: none;
+      font-size: 1.25rem;
+      padding: 0.4rem;
+      color: var(--text-color);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      transition: color 0.2s, transform 0.2s;
+      font-family: 'Bebas Neue', cursive;
+      letter-spacing: 1px;
+    }
+
+    .icon-btn:hover { color: var(--accent-blue); transform: scale(1.15); }
+
+    .cart-btn {
+      position: relative;
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -6px;
+      right: -8px;
+      background: var(--accent-blue);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 900;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-color);
+      border-bottom: var(--manga-border);
+      overflow: hidden;
+    }
+
+    /* Diagonal speed-lines */
+    .hero-bg-effects {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .speed-line {
+      position: absolute;
+      background: var(--accent-blue);
+      opacity: 0.06;
+    }
+
+    .speed-line-1 { top: 10%; left: -10%; width: 120%; height: 2px; transform: rotate(-5deg); animation: speedSlide 3s ease-in-out infinite alternate; }
+    .speed-line-2 { top: 30%; left: -10%; width: 120%; height: 3px; transform: rotate(-3deg); animation: speedSlide 4s ease-in-out infinite alternate .5s; }
+    .speed-line-3 { top: 55%; left: -10%; width: 120%; height: 1px; transform: rotate(-7deg); animation: speedSlide 2.5s ease-in-out infinite alternate 1s; }
+    .speed-line-4 { top: 75%; left: -10%; width: 120%; height: 4px; transform: rotate(-2deg); animation: speedSlide 3.5s ease-in-out infinite alternate .3s; }
+    .speed-line-5 { top: 90%; left: -10%; width: 120%; height: 2px; transform: rotate(-6deg); animation: speedSlide 3s ease-in-out infinite alternate .8s; }
+
+    @keyframes speedSlide {
+      0%   { transform: translateX(-5%) rotate(-5deg); }
+      100% { transform: translateX(5%) rotate(-5deg); }
+    }
+
+    .halftone-overlay {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(var(--accent-blue) 1px, transparent 1px);
+      background-size: 24px 24px;
+      opacity: 0.03;
+    }
+
+    /* Hero content */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    /* Big logo image in hero */
+    .hero-logo-wrap {
+      margin: 0 auto 1.8rem;
+      width: 140px;
+      height: 140px;
+      position: relative;
+      animation: eyePulse 2.2s ease-in-out infinite alternate;
+    }
+
+    .hero-logo-img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--accent-blue);
+      box-shadow:
+        8px 8px 0 var(--accent-green),
+        0 0 40px rgba(24,119,242,0.25);
+      filter: none !important;
+    }
+
+    /* Thin ring that spins around the logo */
+    .hero-logo-ring {
+      position: absolute;
+      inset: -10px;
+      border-radius: 50%;
+      border: 2px dashed var(--accent-blue);
+      opacity: 0.5;
+      animation: ringRotate 14s linear infinite;
+    }
+
+    @keyframes ringRotate { to { transform: rotate(360deg); } }
+
+    @keyframes eyePulse {
+      0%   { transform: scale(1); }
+      100% { transform: scale(1.06); }
+    }
+
+    .hero-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 6rem;
+      font-weight: 700;
+      line-height: 0.9;
+      text-transform: uppercase;
+      letter-spacing: 8px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title-line { display: block; }
+
+    .hero-title-accent {
+      font-size: 8rem;
+      letter-spacing: 12px;
+      -webkit-text-stroke: 3px var(--accent-blue);
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+      opacity: 0.65;
+    }
+
+    /* Accent underline on the word "cheap" / last word */
+    .hero-subtitle em {
+      font-style: normal;
+      color: var(--accent-blue);
+      border-bottom: 2px solid var(--accent-green);
+    }
+
+    /* CTA buttons */
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-btn {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.9rem 2.5rem;
+      border: 4px solid var(--border-color);
+      box-shadow: 4px 4px 0 var(--border-color);
+      transition: all 0.2s ease-in-out;
+      letter-spacing: 2px;
+      cursor: pointer;
+    }
+
+    .hero-btn:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: var(--manga-shadow);
+    }
+
+    .hero-btn-primary {
+      background: var(--accent-blue);
+      color: #fff;
+      border-color: var(--accent-blue);
+      box-shadow: 4px 4px 0 var(--accent-green);
+    }
+    .hero-btn-primary:hover {
+      box-shadow: 8px 8px 0 var(--accent-green);
+    }
+
+    .hero-btn-secondary {
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    /* Scroll indicator */
+    .hero-scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      opacity: 0.45;
+    }
+
+    .scroll-line {
+      width: 2px;
+      height: 40px;
+      background: var(--accent-blue);
+      animation: scrollPulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { transform: scaleY(1); opacity: 1; }
+      50%       { transform: scaleY(0.4); opacity: 0.2; }
+    }
+
+    /* =========================================================
+       PRODUCT CATALOG STRIP (sample 3 cards)
+    ========================================================= */
+    .catalog-section {
+      padding: 4rem 3rem;
+      border-bottom: var(--manga-border);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      letter-spacing: 3px;
+    }
+
+    .section-accent-bar {
+      flex: 1;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-blue) 0%, var(--accent-green) 100%);
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+
+    .manga-panel {
+      background: var(--card-bg);
+      border: var(--manga-border);
+      box-shadow: var(--manga-shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    .manga-panel:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: var(--manga-shadow-hover);
+    }
+
+    .manga-panel img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-bottom: var(--manga-border);
+    }
+
+    .panel-info {
+      padding: 0.9rem 1rem;
+    }
+
+    .panel-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.05rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+
+    .panel-price {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.3rem;
+      color: var(--accent-blue);
+      letter-spacing: 2px;
+    }
+
+    .panel-tag {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.65rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border: 2px solid var(--accent-green);
+      color: var(--accent-green);
+    }
+
+    .add-btn {
+      display: block;
+      width: calc(100% - 2rem);
+      margin: 0.75rem 1rem 1rem;
+      padding: 0.6rem;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: var(--accent-blue);
+      color: #fff;
+      border: 3px solid var(--accent-blue);
+      box-shadow: 3px 3px 0 var(--accent-green);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .add-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--accent-green);
+    }
+
+    /* =========================================================
+       INSTAGRAM PANEL
+    ========================================================= */
+    .ig-section {
+      padding: 4rem 3rem;
+      border-bottom: var(--manga-border);
+    }
+
+    .ig-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .ig-title-block h2 {
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: 2px;
+    }
+
+    .ig-icon { color: var(--accent-blue); font-size: 1.6rem; }
+
+    .ig-sub { font-size: 0.85rem; opacity: 0.6; margin-top: 0.3rem; letter-spacing: 1px; text-transform: uppercase; }
+
+    .follow-btn {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 0.65rem 1.8rem;
+      background: var(--accent-blue);
+      color: #fff;
+      border: 3px solid var(--accent-blue);
+      box-shadow: 4px 4px 0 var(--accent-green);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .follow-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0 var(--accent-green);
+    }
+
+    .ig-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .ig-post-wrapper {
+      position: relative;
+      overflow: hidden;
+      border: var(--manga-border);
+      aspect-ratio: 1;
+      cursor: pointer;
+    }
+
+    .ig-post-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(80%);
+      transition: filter 0.4s, transform 0.4s;
+    }
+
+    .ig-post-wrapper:hover img {
+      filter: grayscale(0%);
+      transform: scale(1.06);
+    }
+
+    .ig-hover-stats {
+      position: absolute;
+      inset: 0;
+      background: rgba(24,119,242,0.82);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .ig-post-wrapper:hover .ig-hover-stats { opacity: 1; }
+
+    .ig-stats-row {
+      display: flex;
+      gap: 1.2rem;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+    .site-footer {
+      background: var(--bg-color);
+      border-top: var(--manga-border);
+      padding: 2.5rem 3rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .footer-logo-img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent-blue);
+      filter: none !important;
+    }
+
+    .footer-brand-name {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.4rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-nav a {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-color);
+      transition: color 0.2s;
+    }
+
+    .footer-nav a:hover { color: var(--accent-blue); }
+
+    .footer-social-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      color: var(--text-color);
+      transition: color 0.2s;
+    }
+
+    .footer-social-link:hover { color: var(--accent-blue); }
+
+    .footer-copy {
+      width: 100%;
+      text-align: center;
+      font-size: 0.78rem;
+      opacity: 0.45;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-family: 'Oswald', sans-serif;
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.25rem;
+      margin-top: 0.5rem;
+    }
+
+    /* =========================================================
+       THEME TOGGLE (bottom-right corner for preview)
+    ========================================================= */
+    .preview-controls {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+      z-index: 999;
+    }
+
+    .preview-controls button {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 0.5rem 1rem;
+      background: var(--accent-blue);
+      color: #fff;
+      border: 2px solid var(--bg-color);
+      box-shadow: 3px 3px 0 var(--accent-green);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .preview-controls button:hover {
+      transform: translate(-2px,-2px);
+      box-shadow: 5px 5px 0 var(--accent-green);
+    }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+    @media (max-width: 768px) {
+      .site-header { padding: 0.8rem 1.5rem; }
+      .header-nav { gap: 1.2rem; }
+      .hero-title { font-size: 3.5rem; letter-spacing: 4px; }
+      .hero-title-accent { font-size: 5rem; letter-spacing: 6px; -webkit-text-stroke: 2px var(--accent-blue); }
+      .ig-grid { grid-template-columns: repeat(2,1fr); }
+      .catalog-section, .ig-section { padding: 3rem 1.5rem; }
+      .site-footer { padding: 2rem 1.5rem; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================
+       HEADER
+  ========================================================= -->
+  <header class="site-header">
+    <a href="#" class="logo-container">
+      <img src="/logo.jpg" alt="Eye Manga Logo" class="logo-img" />
+      <div class="logo-wordmark">
+        <span class="logo-eye">Eye</span>
+        <span class="logo-manga">Manga</span>
+      </div>
+    </a>
+
+    <nav class="header-nav">
+      <a href="#catalog" class="active">Catalog</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+
+      <div class="header-divider"></div>
+
+      <button class="icon-btn" onclick="toggleTheme()" title="Toggle dark mode">🌙</button>
+      <button class="icon-btn" title="Language">GE</button>
+      <button class="icon-btn cart-btn" title="Cart">
+        🛒
+        <span class="cart-badge">3</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- =========================================================
+       HERO
+  ========================================================= -->
+  <section class="hero">
+    <div class="hero-bg-effects">
+      <div class="speed-line speed-line-1"></div>
+      <div class="speed-line speed-line-2"></div>
+      <div class="speed-line speed-line-3"></div>
+      <div class="speed-line speed-line-4"></div>
+      <div class="speed-line speed-line-5"></div>
+      <div class="halftone-overlay"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-logo-wrap">
+        <img src="/logo.jpg" alt="Eye Manga" class="hero-logo-img" />
+        <div class="hero-logo-ring"></div>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="hero-title-line">Eye</span>
+        <span class="hero-title-line hero-title-accent">Manga</span>
+      </h1>
+      <p class="hero-subtitle">
+        Buy manga, anime stickers &amp; posters for <em>cheap</em>
+      </p>
+      <div class="hero-actions">
+        <a href="#catalog" class="hero-btn hero-btn-primary">Catalog</a>
+        <a href="#about" class="hero-btn hero-btn-secondary">The Story</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       CATALOG STRIP (sample cards)
+  ========================================================= -->
+  <section class="catalog-section" id="catalog">
+    <div class="section-header">
+      <h2 class="section-title">Catalog</h2>
+      <div class="section-accent-bar"></div>
+    </div>
+
+    <div class="catalog-grid">
+
+      <!-- Card 1 -->
+      <article class="manga-panel">
+        <img src="https://picsum.photos/300/400?grayscale&random=10" alt="Manga" />
+        <div class="panel-info">
+          <h3 class="panel-title">Attack on Titan</h3>
+          <p class="panel-price">₾ 24.99</p>
+          <span class="panel-tag">Vol. 1–5 Set</span>
+        </div>
+        <button class="add-btn">Add to Cart</button>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="manga-panel">
+        <img src="https://picsum.photos/300/400?grayscale&random=11" alt="Manga" />
+        <div class="panel-info">
+          <h3 class="panel-title">Chainsaw Man</h3>
+          <p class="panel-price">₾ 19.99</p>
+          <span class="panel-tag">Vol. 1</span>
+        </div>
+        <button class="add-btn">Add to Cart</button>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="manga-panel">
+        <img src="https://picsum.photos/300/400?grayscale&random=12" alt="Manga" />
+        <div class="panel-info">
+          <h3 class="panel-title">Jujutsu Kaisen</h3>
+          <p class="panel-price">₾ 21.50</p>
+          <span class="panel-tag">Sticker Pack</span>
+        </div>
+        <button class="add-btn">Add to Cart</button>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="manga-panel">
+        <img src="https://picsum.photos/300/400?grayscale&random=13" alt="Manga" />
+        <div class="panel-info">
+          <h3 class="panel-title">Banana Fish</h3>
+          <p class="panel-price">₾ 18.00</p>
+          <span class="panel-tag">Poster</span>
+        </div>
+        <button class="add-btn">Add to Cart</button>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- =========================================================
+       INSTAGRAM PANEL
+  ========================================================= -->
+  <section class="ig-section" id="contact">
+    <div class="ig-header-row">
+      <div class="ig-title-block">
+        <h2><span class="ig-icon">📷</span> @eye_manga_official</h2>
+        <p class="ig-sub">Follow us for new drops &amp; manga content</p>
+      </div>
+      <button class="follow-btn">Follow</button>
+    </div>
+
+    <div class="ig-grid">
+      <div class="ig-post-wrapper">
+        <img src="https://picsum.photos/300/300?grayscale&random=20" alt="Post 1" />
+        <div class="ig-hover-stats">
+          <p style="font-size:0.85rem">New arrivals 🔥</p>
+          <div class="ig-stats-row"><span>♥ 1.2k</span><span>💬 45</span></div>
+        </div>
+      </div>
+      <div class="ig-post-wrapper">
+        <img src="https://picsum.photos/300/300?grayscale&random=21" alt="Post 2" />
+        <div class="ig-hover-stats">
+          <p style="font-size:0.85rem">Exclusive sticker drop</p>
+          <div class="ig-stats-row"><span>♥ 2.4k</span><span>💬 82</span></div>
+        </div>
+      </div>
+      <div class="ig-post-wrapper">
+        <img src="https://picsum.photos/300/300?grayscale&random=22" alt="Post 3" />
+        <div class="ig-hover-stats">
+          <p style="font-size:0.85rem">Chainsaw Man poster</p>
+          <div class="ig-stats-row"><span>♥ 1.8k</span><span>💬 61</span></div>
+        </div>
+      </div>
+      <div class="ig-post-wrapper">
+        <img src="https://picsum.photos/300/300?grayscale&random=23" alt="Post 4" />
+        <div class="ig-hover-stats">
+          <p style="font-size:0.85rem">AOT limited set</p>
+          <div class="ig-stats-row"><span>♥ 930</span><span>💬 22</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================= -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="/logo.jpg" alt="Eye Manga" class="footer-logo-img" />
+        <span class="footer-brand-name">Eye Manga</span>
+      </div>
+
+      <nav class="footer-nav">
+        <a href="#">Home</a>
+        <a href="#catalog">Catalog</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a href="https://www.instagram.com/eye_manga_official/" target="_blank" rel="noopener noreferrer" class="footer-social-link">
+        📷 @eye_manga_official
+      </a>
+
+      <div class="footer-copy">
+        <p>© 2026 Eye Manga. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       PREVIEW CONTROLS
+  ========================================================= -->
+  <div class="preview-controls">
+    <button onclick="toggleTheme()">☀ / 🌙 Toggle Theme</button>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      const root = document.documentElement;
+      root.setAttribute('data-theme', root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    }
+  </script>
+</body>
+</html>
