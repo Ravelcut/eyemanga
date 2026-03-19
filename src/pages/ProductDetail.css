@@ -245,7 +245,39 @@
   box-shadow: 6px 6px 0px 0px var(--border-color);
 }
 
+.product-chapters {
+  margin: 1.5rem 0;
+  padding: 1.2rem;
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-left-width: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 4px 4px 0px var(--border-color);
+}
+
+.chapters-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--border-color);
+  font-weight: 600;
+}
+
+.chapters-list {
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
 /* Responsive */
+@media (max-width: 968px) {
+  .product-detail-layout { grid-template-columns: 1fr; }
+  .product-detail-info { padding: 0; }
+  .product-detail-title { font-size: 2.2rem; }
+}
+
 @media (max-width: 768px) {
   .product-detail-layout { grid-template-columns: 1fr; gap: 2rem; }
   .product-detail-title { font-size: 1.8rem; }

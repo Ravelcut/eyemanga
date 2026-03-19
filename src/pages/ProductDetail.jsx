@@ -52,7 +52,7 @@ export default function ProductDetail() {
     });
   };
 
-  const volumeObj = product.volumes?.find(v => v.number === selectedVolume);
+  const volumeObj = product.volumes?.find(v => Number(v.number) === Number(selectedVolume));
   const currentPrice = volumeObj?.price || 0;
   const displayImage = volumeObj?.image || product.image;
 
@@ -89,6 +89,13 @@ export default function ProductDetail() {
             </div>
 
             <p className="product-detail-desc">{lang === 'ka' ? product.description_ka : product.description}</p>
+
+            {volumeObj?.chapters && (
+              <div className="product-chapters">
+                <span className="chapters-label">{lang === 'ka' ? 'თავები:' : 'Chapters:'}</span>
+                <span className="chapters-list">{volumeObj.chapters}</span>
+              </div>
+            )}
 
             <button className="add-to-cart-btn" onClick={handleAddToCart}>
               <FiShoppingCart /> {t('add_to_cart')}

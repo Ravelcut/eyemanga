@@ -1,6 +1,8 @@
-export const categories = ['all', 'manga', 'apparel', 'accessories'];
+import { mangaChapters } from './mangaChapters';
 
-export const products = [
+export const categories = ['all', 'manga'];
+
+const initialProducts = [
   {
     id: 'chainsaw-man',
     title: 'Chainsaw Man',
@@ -63,8 +65,8 @@ export const products = [
     title_ka: 'ბანანის თევზი',
     category: 'manga',
     image: '/banana-fish/Banana_Fish_main.webp',
-    author: 'Yoshihiro Togashi',
-    author_ka: 'იოშიჰირო ტოგაში',
+    author: 'Akimi Yoshida',
+    author_ka: 'აკიმი იოშიდა',
     description: 'Nature made Ash Lynx beautiful; nurture made him a cold ruthless killer.',
     description_ka: 'ბუნებამ ეშ ლინქსი მშვენიერი გახადა; აღზრდამ კი - ცივსისხლიანი მკვლელი.',
     spanRow: 1,
@@ -120,7 +122,7 @@ export const products = [
     title: 'Jujutsu Kaisen',
     title_ka: 'ჯუჯუცუ კაისენი',
     category: 'manga',
-    image: '/jujutsu-kaisen/Jujutsu_Kaisen_main.webp', // Assuming .webp for consistency
+    image: '/jujutsu-kaisen/Jujutsu_Kaisen_main.webp',
     author: 'Gege Akutami',
     author_ka: 'გეგე აკუტამი',
     description: 'A boy fights for his life against curses and monsters in the world of Jujutsu.',
@@ -135,48 +137,40 @@ export const products = [
     }))
   },
   {
-    id: 'guts-hoodie',
-    title: 'Guts "Berserk" Hoodie',
-    title_ka: 'Guts "Berserk" ჰუდი',
-    category: 'apparel',
+    id: 'custom-manga-request',
+    title: 'Request Your Own Manga',
+    title_ka: 'მანგის მოთხოვნა',
+    category: 'manga',
     image: '/logo.jpg',
-    author: 'Limited Edition',
-    description: 'Premium heavyweight hoodie featuring minimalist Guts embroidery.',
-    description_ka: 'პრემიუმ ხარისხის ჰუდი მინიმალისტური Guts-ის ქარგვით.',
+    author: 'Special Order',
+    author_ka: 'სპეციალური შეკვეთა',
+    description: "request a manga that isn't listed here, make sure to include details at the checkout",
+    description_ka: 'მოითხოვეთ მანგა, რომელიც აქ არ არის ჩამოთვლილი. აუცილებლად მიუთითეთ დეტალები შეკვეთისას.',
     spanRow: 1,
     spanCol: 1,
-    featured: false,
-    volumes: [{ number: 1, price: 85.00 }]
-  },
-  {
-    id: 'musashi-tote',
-    title: 'Musashi Tote Bag',
-    title_ka: 'მუსაშის ჩანთა',
-    category: 'accessories',
-    image: '/logo.jpg',
-    author: 'Art Series',
-    description: 'Durable canvas tote with Musashi ink-wash illustration.',
-    description_ka: 'გამძლე ტილოს ჩანთა მუსაშის ილუსტრაციით.',
-    spanRow: 1,
-    spanCol: 1,
-    featured: false,
-    volumes: [{ number: 1, price: 25.00 }]
-  },
-  {
-    id: 'akira-tee',
-    title: 'Neo-Tokyo Oversized Tee',
-    title_ka: 'Neo-Tokyo-ს მაისური',
-    category: 'apparel',
-    image: '/logo.jpg',
-    author: 'Cyberpunk Collection',
-    description: 'High-quality cotton oversized t-shirt with Akira back graphic.',
-    description_ka: 'მაღალი ხარისხის ბამბის მაისური Akira-ს პრინტით.',
-    spanRow: 1,
-    spanCol: 1,
-    featured: false,
-    volumes: [{ number: 1, price: 45.00 }]
+    featured: true,
+    volumes: [{ 
+      number: 1, 
+      price: 20.00, 
+      chapters: 'Special Request' 
+    }]
   }
 ];
+
+// Enrich volumes with chapters from mangaChapters
+export const products = initialProducts.map(product => {
+  const seriesChapters = mangaChapters[product.id];
+  if (seriesChapters) {
+    return {
+      ...product,
+      volumes: product.volumes.map(vol => ({
+        ...vol,
+        chapters: seriesChapters[vol.number] || vol.chapters // keep existing (e.g. for custom request)
+      }))
+    };
+  }
+  return product;
+});
 
 export const getFeaturedProducts = () => products.filter(p => p.featured);
 
@@ -192,6 +186,7 @@ export const searchProducts = (query) => {
   return products.filter(p =>
     p.title.toLowerCase().includes(q) ||
     p.description.toLowerCase().includes(q) ||
-    p.category.toLowerCase().includes(q)
+    p.category.toLowerCase().includes(q) ||
+    (p.title_ka && p.title_ka.toLowerCase().includes(q))
   );
 };
