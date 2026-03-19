@@ -112,7 +112,7 @@ export const products = [
     title: 'Jujutsu Kaisen',
     title_ka: 'ჯუჯუცუ კაისენი',
     category: 'manga',
-    image: '/logo.jpg',
+    image: '/jujutsu-kaisen/Jujutsu_Kaisen_main.webp', // Assuming .webp for consistency
     author: 'Gege Akutami',
     author_ka: 'გეგე აკუტამი',
     description: 'A boy fights for his life against curses and monsters in the world of Jujutsu.',
@@ -120,7 +120,11 @@ export const products = [
     spanRow: 1,
     spanCol: 1,
     featured: true,
-    volumes: Array.from({ length: 25 }, (_, i) => ({ number: i + 1, price: 15.00 }))
+    volumes: Array.from({ length: 31 }, (_, i) => ({ 
+      number: i, // Volumes 0 to 30
+      price: 15.00,
+      image: `/jujutsu-kaisen/Jujutsu_Kaisen_Volume_${i}.webp`
+    }))
   }
 ];
 
