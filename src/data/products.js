@@ -97,7 +97,7 @@ export const products = [
     title: 'Attack on Titan',
     title_ka: 'ტიტანების თავდასხმა',
     category: 'manga',
-    image: '/logo.jpg',
+    image: '/attack-on-titan/aot_main.jpg',
     author: 'Hajime Isayama',
     author_ka: 'ჰაჯიმე იზაიამა',
     description: 'Humanity is on the brink of extinction as giant humanoids devour everyone in sight.',
@@ -105,7 +105,15 @@ export const products = [
     spanRow: 1,
     spanCol: 1,
     featured: false,
-    volumes: Array.from({ length: 34 }, (_, i) => ({ number: i + 1, price: 15.00 }))
+    volumes: Array.from({ length: 34 }, (_, i) => {
+      const num = i + 1;
+      const fileName = `AoTVol${num.toString().padStart(2, '0')}.webp`;
+      return { 
+        number: num, 
+        price: 15.00,
+        image: `/attack-on-titan/${fileName}`
+      };
+    })
   },
   {
     id: 'jujutsu-kaisen',
