@@ -16,21 +16,18 @@ export default function About() {
           <article className="about-panel manga-panel">
             <div className="about-panel-inner">
               <h2>{t('the_story')}</h2>
-              <p>{t('story_text')}</p>
             </div>
           </article>
 
           <article className="about-panel manga-panel">
             <div className="about-panel-inner">
               <h2>{t('the_vision')}</h2>
-              <p>{t('vision_text')}</p>
             </div>
           </article>
 
           <article className="about-panel manga-panel about-panel-wide">
             <div className="about-panel-inner">
               <h2>{t('the_brand')}</h2>
-              <p>{t('brand_text')}</p>
             </div>
           </article>
         </div>
