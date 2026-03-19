@@ -1,4 +1,4 @@
-# Eye Manga - Original Manga Series & Merch
+# Eye Manga - get manga and anime stickers/posters for cheap.
 
 Eye Manga is a modern React-powered platform for exploring manga series, built with **Vite**, **Supabase**, and **Meta (Instagram) OAuth**.
 
