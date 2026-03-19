@@ -12,31 +12,29 @@ import Checkout from './pages/Checkout';
 
 function App() {
   return (
-    <LanguageProvider>
-      <BrowserRouter>
-        <ScrollToTop />
-        <div className="app-container">
-          <Header />
-          <CartDrawer />
-          <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/catalog" element={<Catalog />} />
-              <Route path="/product/:id" element={<ProductDetail />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/checkout" element={<Checkout />} />
-              <Route path="*" element={
-                <div style={{ padding: '4rem', textAlign: 'center' }}>
-                  <h1>404 — Page Not Found</h1>
-                  <a href="/">← Back to Home</a>
-                </div>
-              } />
-            </Routes>
-          </main>
-        </div>
-      </BrowserRouter>
-    </LanguageProvider>
+    <BrowserRouter>
+      <ScrollToTop />
+      <div className="app-container">
+        <Header />
+        <CartDrawer />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/catalog" element={<Catalog />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="*" element={
+              <div style={{ padding: '4rem', textAlign: 'center' }}>
+                <h1>404 — Page Not Found</h1>
+                <a href="/">← Back to Home</a>
+              </div>
+            } />
+          </Routes>
+        </main>
+      </div>
+    </BrowserRouter>
   );
 }
 

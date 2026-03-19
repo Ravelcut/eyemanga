@@ -23,6 +23,8 @@ export function CartProvider({ children }) {
   // Hydrate stored minimal items with fresh localized data from products.js
   const items = useMemo(() => {
     return storedItems.map(item => {
+      if (!item || !item.id) return item;
+
       // Find the base series
       const series = products.find(p => p.id === (item.seriesId || item.id.split('-v')[0]));
       if (!series) return item;
