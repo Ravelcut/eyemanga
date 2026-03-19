@@ -133,6 +133,48 @@ export const products = [
       price: 15.00,
       image: `/jujutsu-kaisen/Jujutsu_Kaisen_Volume_${i}.webp`
     }))
+  },
+  {
+    id: 'guts-hoodie',
+    title: 'Guts "Berserk" Hoodie',
+    title_ka: 'Guts "Berserk" ჰუდი',
+    category: 'apparel',
+    image: '/logo.jpg',
+    author: 'Limited Edition',
+    description: 'Premium heavyweight hoodie featuring minimalist Guts embroidery.',
+    description_ka: 'პრემიუმ ხარისხის ჰუდი მინიმალისტური Guts-ის ქარგვით.',
+    spanRow: 1,
+    spanCol: 1,
+    featured: false,
+    volumes: [{ number: 1, price: 85.00 }]
+  },
+  {
+    id: 'musashi-tote',
+    title: 'Musashi Tote Bag',
+    title_ka: 'მუსაშის ჩანთა',
+    category: 'accessories',
+    image: '/logo.jpg',
+    author: 'Art Series',
+    description: 'Durable canvas tote with Musashi ink-wash illustration.',
+    description_ka: 'გამძლე ტილოს ჩანთა მუსაშის ილუსტრაციით.',
+    spanRow: 1,
+    spanCol: 1,
+    featured: false,
+    volumes: [{ number: 1, price: 25.00 }]
+  },
+  {
+    id: 'akira-tee',
+    title: 'Neo-Tokyo Oversized Tee',
+    title_ka: 'Neo-Tokyo-ს მაისური',
+    category: 'apparel',
+    image: '/logo.jpg',
+    author: 'Cyberpunk Collection',
+    description: 'High-quality cotton oversized t-shirt with Akira back graphic.',
+    description_ka: 'მაღალი ხარისხის ბამბის მაისური Akira-ს პრინტით.',
+    spanRow: 1,
+    spanCol: 1,
+    featured: false,
+    volumes: [{ number: 1, price: 45.00 }]
   }
 ];
 

@@ -16,36 +16,46 @@ export default function About() {
           <article className="about-panel manga-panel">
             <div className="about-panel-inner">
               <h2>{t('the_story')}</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              </p>
-              <p>
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
+              <p>{t('story_text')}</p>
             </div>
           </article>
 
           <article className="about-panel manga-panel">
             <div className="about-panel-inner">
               <h2>{t('the_vision')}</h2>
-              <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-              </p>
-              <p>
-                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-              </p>
+              <p>{t('vision_text')}</p>
             </div>
           </article>
 
           <article className="about-panel manga-panel about-panel-wide">
             <div className="about-panel-inner">
               <h2>{t('the_brand')}</h2>
-              <p>
-                At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.
-              </p>
+              <p>{t('brand_text')}</p>
             </div>
           </article>
         </div>
+
+        <section className="how-to-order-section">
+          <div className="section-header">
+            <h2 className="section-title">{t('how_to_order')}</h2>
+            <div className="section-line"></div>
+          </div>
+          
+          <div className="how-to-grid">
+            <div className="how-to-step manga-panel">
+              <h3>{t('step_1')}</h3>
+              <p>{t('step_1_text')}</p>
+            </div>
+            <div className="how-to-step manga-panel">
+              <h3>{t('step_2')}</h3>
+              <p>{t('step_2_text')}</p>
+            </div>
+            <div className="how-to-step manga-panel">
+              <h3>{t('step_3')}</h3>
+              <p>{t('step_3_text')}</p>
+            </div>
+          </div>
+        </section>
 
       </div>
       <Footer />
