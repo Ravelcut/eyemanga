@@ -43,7 +43,7 @@ export const products = [
     title: 'Nana',
     title_ka: 'ნანა',
     category: 'manga',
-    image: '/chainsaw-man-vol1.jpg',
+    image: '/nana/Nana-main.webp',
     author: 'Ai Yazawa',
     author_ka: 'აი იაზავა',
     description: 'Two girls with the same name but completely different lives move to Tokyo to pursue their dreams.',
@@ -51,7 +51,11 @@ export const products = [
     spanRow: 1,
     spanCol: 1,
     featured: true,
-    volumes: Array.from({ length: 21 }, (_, i) => ({ number: i + 1, price: 15.00 }))
+    volumes: Array.from({ length: 21 }, (_, i) => ({ 
+      number: i + 1, 
+      price: 15.00,
+      image: `/nana/Nana-vol-${i + 1}.webp`
+    }))
   },
   {
     id: 'banana-fish',
@@ -93,7 +97,7 @@ export const products = [
     title: 'Attack on Titan',
     title_ka: 'ტიტანების თავდასხმა',
     category: 'manga',
-    image: '/chainsaw-man-vol1.jpg',
+    image: '/logo.jpg',
     author: 'Hajime Isayama',
     author_ka: 'ჰაჯიმე იზაიამა',
     description: 'Humanity is on the brink of extinction as giant humanoids devour everyone in sight.',
@@ -108,7 +112,7 @@ export const products = [
     title: 'Jujutsu Kaisen',
     title_ka: 'ჯუჯუცუ კაისენი',
     category: 'manga',
-    image: '/chainsaw-man-vol1.jpg',
+    image: '/logo.jpg',
     author: 'Gege Akutami',
     author_ka: 'გეგე აკუტამი',
     description: 'A boy fights for his life against curses and monsters in the world of Jujutsu.',
